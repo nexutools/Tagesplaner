@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <title>Tagesplaner</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Tagesplaner</h1>
+    <nav>
+      <button class="tab active" data-tab="heute">Heute</button>
+      <button class="tab" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="daten">Daten</button>
+    </nav>
+  </header>
+  <main>
+    <section id="tab-heute" class="panel active">
+      <div class="date-nav">
+        <button id="prev-day" title="Vortag">←</button>
+        <input type="date" id="day-picker">
+        <button id="next-day" title="Nächster Tag">→</button>
+        <button id="today-btn">Heute</button>
+      </div>
+      <p id="day-summary" class="muted"></p>
+      <div id="topic-grid" class="topic-grid"></div>
+      <h2>Journal</h2>
+      <textarea id="journal" rows="9" placeholder="Freier Text für diesen Tag …"></textarea>
+      <p id="journal-status" class="muted"></p>
+    </section>
+
+    <section id="tab-dashboard" class="panel">
+      <div class="range-nav">
+        <label>Zeitraum:
+          <select id="range">
+            <option value="7">letzte 7 Tage</option>
+            <option value="14">letzte 14 Tage</option>
+            <option value="30" selected>letzte 30 Tage</option>
+            <option value="90">letzte 90 Tage</option>
+          </select>
+        </label>
+      </div>
+      <div id="dash-overall"></div>
+      <h2>Themen – Erfüllung im Zeitraum</h2>
+      <div id="dash-topics"></div>
+      <h2>Gewicht</h2>
+      <div id="dash-weight"></div>
+      <svg id="weight-chart" role="img" aria-label="Gewichtsverlauf"></svg>
+      <h2>Sport</h2>
+      <div id="dash-sport"></div>
+      <svg id="sport-chart" role="img" aria-label="Aktive Kalorien pro Woche"></svg>
+    </section>
+
+    <section id="tab-daten" class="panel">
+      <h2>Apple Health / Waage importieren</h2>
+      <p class="muted">JSON oder CSV (z. B. Export aus einem Apple-Kurzbefehl) einfügen oder Datei wählen – Schema siehe README.</p>
+      <textarea id="import-text" rows="8" placeholder='[{"date":"2025-06-10","type":"steps","value":8432,"unit":"count"},{"date":"2025-06-10","type":"weight","value":82.4,"unit":"kg"}]'></textarea>
+      <div class="row">
+        <input type="file" id="import-file" accept=".json,.csv,.txt">
+        <button id="import-btn">Importieren</button>
+      </div>
+      <p id="import-status"></p>
+      <h2>Eigene Daten</h2>
+      <div class="row">
+        <button id="export-btn">Als JSON exportieren</button>
+        <button id="wipe-btn" class="danger">Alle lokalen Daten löschen</button>
+      </div>
+      <p id="store-stats" class="muted"></p>
+    </section>
+  </main>
+  <script src="js/core.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
